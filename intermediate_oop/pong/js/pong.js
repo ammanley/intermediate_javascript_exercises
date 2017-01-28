@@ -38,6 +38,7 @@ Pong.prototype.update = function() {
   this.clearCanvas();
   this.ball.update();
   this.paddleL.update();
+  console.log(paddleR.x)
   this.paddleR.update();
 
   this.paddleL.handleCollision(this.ball);

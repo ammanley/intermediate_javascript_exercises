@@ -26,6 +26,9 @@ Paddle.prototype.draw = function(context) {
 Paddle.prototype.__setupArrowBindings = function() {
  document.addEventListener("keydown", function(event) {
     if (event.which === this.upKeyCode) {
+      if (this.component.y <= 50) {this.component.y = 50;}
+      console.log(this.component.x )
+      console.log(this.component.y )
       this.keyDown = this.upKeyCode;
       this.component.velocity = this.velocityUp;
     } else if (event.which === this.downKeyCode) {

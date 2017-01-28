@@ -74,27 +74,59 @@ function unzip (arr) {
     //loop through intial set of arrays
     //at each input, send the 1st,2nd,3rd,nth element to 
     //corr ans arr.
-
 var ansArr = [];
+
 var args = Array.from(arguments);
+
 args.forEach(function (val, idx) {
     val.forEach(function (val2, idx2) {
-        if (ansArr[idx2] === undefined) {
+        if (ansArr[idx2] === undefined || ansArr) {
             ansArr[idx2] = [];
+        } else {
+            ansArr[idx2].push(val2);
         }
-        ansArr[idx2].push(val2);
-    })
-})
+    });
+});
 return ansArr;
 }
 
-function zipObject(){
+function zipObject() {}
 
+function includes(arrOrObj, searchTerm, startIdx){
+if (startIdx == undefined) {
+    startIdx = 0;
+}
+var hasSearchTerm = false;
+if (Array.isArray(arrOrObj))   { 
+var arrCopy = arrOrObj.slice(startIdx);
+    arrCopy.forEach(function (x) {
+        if (x === searchTerm) {
+            hasSearchTerm = true;
+        }
+    });
+} else if (typeof(arrOrObj) === "object") {
+    for (var key in arrOrObj) {
+        if (arrOrObj[key] === searchTerm) {
+            hasSearchTerm = true;
+        }
+    }
+} else if (typeof(arrOrObj) === "string") { //edge case: passing in a string with multiple of same letter
+    str = Array.from(arrOrObj);
+    for (var i = 0; i <= searchTerm.length; i++) {
+        if (i === searchTerm.length) {
+            hasSearchTerm = true;
+            break;
+        }
+        var prev = str.indexOf(searchTerm[i]);
+        if (!prev === str.indexOf(searchTerm[i]) ) {
+            break;
+        }
+    }   
+}
+return hasSearchTerm;
 }
 
-function includes(){
 
-}
 
 function sample(){
 
